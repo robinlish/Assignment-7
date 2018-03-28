@@ -18,10 +18,16 @@ from <- "Bude North Cornwall Cricket Club"
 to <- "Bar 35, Belle Vue Ln, Bude EX23 8BR"
 route_df <- route(from, to, structure = "route")
 
+hotel <- geocode(c("Tommy Jacks Beach Hotel Bude UK","Fairway House Bude UK"))
+hotel <- data.frame(lon=hotel$lon, lat=hotel$lat,area="hotel")
+
+location <- rbind(location, hotel)
+
 ggmap(map)+
   geom_point(data = location, aes(x=lon, y=lat, color = area), size =3)+
   geom_path(aes(x = lon, y = lat), colour = "pink", size = 1.4, data = route_df, lineend = "round"
   )
+
 ```
 Watercolor map:
 ```{r message=FALSE}
@@ -44,6 +50,10 @@ Places to go in Bude:
 ![Bude Castle](castle.jpg)
 
 ![Bar 35](bar35.jpg)
+
+![Tommy Jacks Beach Hotel](Tommy Jacks Beach Hotel.jpg)
+
+![Fairway House](Fairway House.jpg)
 
 
 
